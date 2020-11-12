@@ -191,7 +191,7 @@ MlasQLinearAddKernelAvx2Helper(
         int r = static_cast<int>(n % 4);
         if (r > 0) {
             auto permuted = _mm256_permutevar8x32_epi32(vc, _mm256_set1_epi32(k));
-            uint32_t PackedValueC = (uint32_t)_mm256_extract_epi32(permuted, 0);
+            uint32_t PackedValueC = (uint32_t)*(int32_t*)(&permuted);
             for (int i = 0; i < r; ++i) {
                 *((uint8_t*)OutputC + i) = (uint8_t)PackedValueC;
                 PackedValueC >>= 8;

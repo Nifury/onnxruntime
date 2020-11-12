@@ -561,7 +561,7 @@ def use_dev_mode(args):
         return 'OFF'
     if args.ios and is_macOS():
         return 'OFF'
-    return 'ON'
+    return 'OFF'
 
 
 def generate_build_tree(cmake_path, source_dir, build_dir, cuda_home, cudnn_home,
@@ -1680,6 +1680,8 @@ def main():
                     # C:\Program Files (x86)\Microsoft Visual
                     # Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\BuildCustomizations  # noqa
                     toolset = 'v141,host=x64,version=' + args.msvc_toolset
+                elif args.msvc_toolset == 'v140':
+                    toolset = args.msvc_toolset
                 elif args.msvc_toolset:
                     toolset = 'host=x64,version=' + args.msvc_toolset
                 else:
